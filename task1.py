@@ -72,7 +72,7 @@ def next_gen(gen_id, now_enermies, now_pop, new_pop, best, select, crossover, mu
     fitness_mean = np.array([0.0 for i in range(n_pop)])
 
     #if (gen_id == 0):
-    enermies = [1]
+    enermies = [1, 2, 3, 4, 5, 6, 7, 8]
         #now_enermies = enermies
     #else:
     #    enermies = now_enermies
