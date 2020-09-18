@@ -1,0 +1,15 @@
+Best result of Gen 0 is 50: avg = 57.19486503, var = 0.00000000, std = 0.00000000
+Best result of Gen 1 is 87: avg = 66.16226955, var = 0.00000000, std = 0.00000000
+Best result of Gen 2 is 0: avg = 66.16226955, var = 0.00000000, std = 0.00000000
+Best result of Gen 3 is 62: avg = 75.09191706, var = 0.00000000, std = 0.00000000
+Best result of Gen 4 is 66: avg = 75.16226955, var = 0.00000000, std = 0.00000000
+Best result of Gen 5 is 0: avg = 75.16226955, var = 0.00000000, std = 0.00000000
+Best result of Gen 6 is 0: avg = 75.16226955, var = 0.00000000, std = 0.00000000
+Best result of Gen 7 is 0: avg = 75.16226955, var = 0.00000000, std = 0.00000000
+Best result of Gen 8 is 0: avg = 75.16226955, var = 0.00000000, std = 0.00000000
+Best result of Gen 9 is 0: avg = 75.16226955, var = 0.00000000, std = 0.00000000
+Best result of Gen 10 is 0: avg = 75.16226955, var = 0.00000000, std = 0.00000000
+Best result of Gen 11 is 0: avg = 75.16226955, var = 0.00000000, std = 0.00000000
+Best result of Gen 12 is 0: avg = 75.16226955, var = 0.00000000, std = 0.00000000
+Best result of Gen 13 is 0: avg = 75.16226955, var = 0.00000000, std = 0.00000000
+Best result of Gen 14 is 0: avg = 75.16226955, var = 0.00000000, std = 0.00000000
