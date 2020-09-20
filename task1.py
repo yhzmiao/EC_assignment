@@ -23,6 +23,7 @@ env = Environment(experiment_name=experiment_name,
 env.state_to_log()
 
 n_variables = (env.get_num_sensors()+1)*n_hidden_neurons + (n_hidden_neurons+1)*5 # number of values
+#print(n_variables)  265   10 200 55 5
 
 # setup the ea
 
@@ -65,6 +66,9 @@ def get_random_id(sum_fit, fitness_array):
         now_sum_fit += fitness_array[i]
         i = i + 1
     return i - 1
+
+# \alpha = 0.55
+
 
 
 def next_gen(gen_id, now_enermies, now_pop, new_pop, best, select, crossover, mutation):
