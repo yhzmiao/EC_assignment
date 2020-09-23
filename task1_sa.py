@@ -98,7 +98,7 @@ MT_RATE = 0.3
 N_RESET = 10
 REPLACE_K = 30
 
-n_gen = 20 # number of generations
+n_gen = 30 # number of generations
 
 gen_id = 2 # if 1, it will accept every change
 T0 = 0.1
@@ -125,6 +125,9 @@ def simulated_annealing(f1, f2, gen_id, T0):
 for now_gen in range(0, n_gen):
     print("Start %d generation!" % now_gen)
     offspring = toolbox.select(pop, len(pop))
+    
+    updated_best = 0
+    best_gen_fitness = 0
 
     # crossover
     for i in range(1, len(offspring), 2):
@@ -134,6 +137,27 @@ for now_gen in range(0, n_gen):
             old_offspring_2 = toolbox.clone(offspring[i])
             old_offspring_1.fitness.values = toolbox.evaluate(old_offspring_1)
             old_offspring_2.fitness.values = toolbox.evaluate(old_offspring_2)
+
+            # some best results might be dropped here
+            if best_fitness + eps < old_offspring_1.fitness.values[0]:
+                best_fitness = old_offspring_1.fitness.values[0]
+                print(best_fitness)
+                best_ind = toolbox.clone(old_offspring_1)
+                updated_best = 1
+            if best_gen_fitness + eps < old_offspring_1.fitness.values[0]:
+                best_gen_fitness = old_offspring_1.fitness.values[0]
+                print(best_gen_fitness)
+                best_gen_ind = toolbox.clone(old_offspring_1)
+
+            if best_fitness + eps < old_offspring_2.fitness.values[0]:
+                best_fitness = old_offspring_2.fitness.values[0]
+                print(best_fitness)
+                best_ind = toolbox.clone(old_offspring_2)
+                updated_best = 1
+            if best_gen_fitness + eps < old_offspring_2.fitness.values[0]:
+                best_gen_fitness = old_offspring_2.fitness.values[0]
+                print(best_gen_fitness)
+                best_gen_ind = toolbox.clone(old_offspring_2)
             
             offspring[i - 1], offspring[i] = toolbox.mate(offspring[i - 1], offspring[i])
             offspring[i - 1].fitness.values = toolbox.evaluate(offspring[i - 1])
@@ -153,6 +177,17 @@ for now_gen in range(0, n_gen):
         if random.uniform(0, 1) > MT_RATE:
             continue
         old_offspring = toolbox.clone(offspring[i])
+        # some best results might be dropped here
+        if best_fitness + eps < old_offspring.fitness.values[0]:
+            best_fitness = old_offspring.fitness.values[0]
+            print(best_fitness)
+            best_ind = toolbox.clone(old_offspring)
+            updated_best = 1
+        if best_gen_fitness + eps < old_offspring.fitness.values[0]:
+            best_gen_fitness = old_offspring.fitness.values[0]
+            print(best_gen_fitness)
+            best_gen_ind = toolbox.clone(old_offspring)
+
         offspring[i], = uniform_mutate(offspring[i])
         offspring[i].fitness.values = toolbox.evaluate(offspring[i])
 
@@ -175,7 +210,6 @@ for now_gen in range(0, n_gen):
         #print(offspring[rank_list[i]].fitness.values[0])
     
     # update best
-    updated_best = 0
     for ind in offspring:
         if best_fitness + eps < ind.fitness.values[0]:
             best_fitness = ind.fitness.values[0]

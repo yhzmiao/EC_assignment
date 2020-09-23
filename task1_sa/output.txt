@@ -1,6 +1,12 @@
 Best fitness in 0 generation 56.773463, Best fitness by now 56.773463
-This generation mean = 9.399539, var = 178.437595, std = 13.358054
-Best fitness in 1 generation 74.773463, Best fitness by now 74.773463
-This generation mean = 24.027827, var = 290.665134, std = 17.048904
-Best fitness in 2 generation 74.773463, Best fitness by now 74.773463
-This generation mean = 31.383754, var = 410.771598, std = 20.267501
+This generation mean = 11.596127, var = 266.925198, std = 16.337846
+Best fitness in 1 generation 65.773463, Best fitness by now 65.773463
+This generation mean = 19.071403, var = 403.821725, std = 20.095316
+Best fitness in 2 generation 74.870950, Best fitness by now 74.870950
+This generation mean = 27.042789, var = 518.946170, std = 22.780390
+Best fitness in 3 generation 86.421114, Best fitness by now 86.421114
+This generation mean = 34.133412, var = 626.020816, std = 25.020408
+Best fitness in 4 generation 86.421114, Best fitness by now 86.421114
+This generation mean = 39.172693, var = 640.178567, std = 25.301750
+Best fitness in 5 generation 86.421114, Best fitness by now 86.421114
+This generation mean = 43.096457, var = 633.454597, std = 25.168524

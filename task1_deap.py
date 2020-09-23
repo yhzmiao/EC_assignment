@@ -127,7 +127,7 @@ best_gen_ind = None
 
 # rewrite eaSimple
 
-fp = open(experiment_name + "/output.txt", "w")
+fp = open(experiment_name + "/output_2.txt", "w")
 
 for now_gen in range(n_gen):
     print("Start %d generation!" % now_gen)
@@ -203,4 +203,4 @@ for now_gen in range(n_gen):
 #np.savetxt(experiment_name+'/best.txt', hof[0])
 
 # or
-np.savetxt(experiment_name+'/best.txt', best_ind)
+np.savetxt(experiment_name+'/best_2.txt', best_ind)
