@@ -50,32 +50,16 @@ save logs: yes
 
 PARAMETER CHANGE: enemies = [1]
 
-RUN: run status: enemy: 1; fitness: 12.76355803717005; player life: 0; enemy life: 80.0; time: 188
-
 PARAMETER CHANGE: enemies = [2]
-
-RUN: run status: enemy: 2; fitness: 88.32700044143624; player life: 36; enemy life: 0; time: 195
 
 PARAMETER CHANGE: enemies = [3]
 
-RUN: run status: enemy: 3; fitness: 66.43931836898447; player life: 0; enemy life: 20.0; time: 260
-
 PARAMETER CHANGE: enemies = [4]
-
-RUN: run status: enemy: 4; fitness: 48.03129244001463; player life: 0; enemy life: 40.0; time: 391
 
 PARAMETER CHANGE: enemies = [5]
 
-RUN: run status: enemy: 5; fitness: 88.32698639161589; player life: 41.20000000000029; enemy life: 0; time: 328
-
 PARAMETER CHANGE: enemies = [6]
-
-RUN: run status: enemy: 6; fitness: 66.19788162462294; player life: 0; enemy life: 20.0; time: 331
 
 PARAMETER CHANGE: enemies = [7]
 
-RUN: run status: enemy: 7; fitness: 66.47454706086822; player life: 0; enemy life: 20.0; time: 251
-
 PARAMETER CHANGE: enemies = [8]
-
-RUN: run status: enemy: 8; fitness: 86.33574420258549; player life: 22.600000000000243; enemy life: 0; time: 374

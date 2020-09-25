@@ -48,7 +48,7 @@ POP_SIZE = 100 # number of individuals
 
 def calc_fitness(individual):
     # average of all enemies
-    enermies_list = [3]
+    enermies_list = [5]
     fitness_list = []
 
     #print(individual)
@@ -96,7 +96,7 @@ def uniform_mutate(individual):
 
 
 
-for iterator in range(1, 11):
+for iterator in range(4, 6):
     pop = toolbox.population(n=POP_SIZE)
     for ind in pop:
         ind.fitness.values = 1,
@@ -112,7 +112,7 @@ for iterator in range(1, 11):
     N_RESET = 10
     REPLACE_K = 30
 
-    n_gen = 30 # number of generations
+    n_gen = 12 # number of generations
 
     gen_id = 2 # if 1, it will accept every change
     T0 = 0.1
@@ -124,7 +124,7 @@ for iterator in range(1, 11):
     best_gen_fitness = 0
     best_gen_ind = None
 
-    fp = open(experiment_name + "/output_3_" + str(iterator) + ".txt", "w")
+    fp = open(experiment_name + "/output_5_" + str(iterator) + ".txt", "w")
 
 
 
@@ -251,4 +251,4 @@ for iterator in range(1, 11):
         pop = offspring
 
 
-    np.savetxt(experiment_name + '/best_3_' + str(iterator) + '.txt', best_ind)
+    np.savetxt(experiment_name + '/best_5_' + str(iterator) + '.txt', best_ind)
