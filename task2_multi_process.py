@@ -267,3 +267,4 @@ if __name__ == "__main__":
     fp_end = open(experiment_name + "/end.txt", "w")
     for ind in pop:
         print(ind, file = fp_end)
+    fp_end.close()
