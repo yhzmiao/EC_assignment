@@ -17,6 +17,8 @@ os.environ["SDL_VIDEODRIVER"] = "dummy"
 # setup the environment
 
 experiment_name = "task2_new_fit"
+if not os.path.exists(experiment_name):
+    os.makedirs(experiment_name)
 
 n_hidden_neurons = 10
     #env[e - 1].state_to_log()
@@ -121,9 +123,6 @@ toolbox.register("population", tools.initRepeat, list, toolbox.individual)
 pop = toolbox.population(n=POP_SIZE)
 for ind in pop:
     ind.fitness.values = 1.0, 0.0, 0.0, 0.0
-
-for ind in pop:
-    print(ind)
 
 toolbox.register("mate", tools.cxTwoPoint)
 #toolbox.register("mutate", simple_mutate)

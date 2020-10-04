@@ -17,6 +17,8 @@ os.environ["SDL_VIDEODRIVER"] = "dummy"
 # setup the environment
 
 experiment_name = "task2_multi_process"
+if not os.path.exists(experiment_name):
+    os.makedirs(experiment_name)
 
 n_hidden_neurons = 10
     #env[e - 1].state_to_log()
