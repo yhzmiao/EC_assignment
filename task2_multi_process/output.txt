@@ -1,0 +1,94 @@
+Best fitness in 0 generation 48.946647, gain -198.600000, best fitness by now 48.946647, gain -198.600000
+This generation fitness mean = 13.491849, var = 219.584431, std = 14.818382
+This generation gain mean = -614.064000, var = 30867.437504, std = 175.691313
+Best fitness in 1 generation 50.352586, gain -145.400000, best fitness by now 50.352586, gain -145.400000
+This generation fitness mean = 20.683868, var = 268.444003, std = 16.384261
+This generation gain mean = -532.642000, var = 36797.012236, std = 191.825473
+Best fitness in 2 generation 55.611417, gain -137.400000, best fitness by now 55.611417, gain -137.400000
+This generation fitness mean = 26.458471, var = 245.557721, std = 15.670281
+This generation gain mean = -456.378000, var = 35590.936716, std = 188.655603
+Best fitness in 3 generation 55.928980, gain -125.200000, best fitness by now 55.928980, gain -125.200000
+This generation fitness mean = 30.217638, var = 236.489695, std = 15.378221
+This generation gain mean = -421.752000, var = 35036.300896, std = 187.179862
+Best fitness in 4 generation 55.882939, gain -128.800000, best fitness by now 55.928980, gain -125.200000
+This generation fitness mean = 29.249336, var = 297.979317, std = 17.262077
+This generation gain mean = -436.736000, var = 43950.442304, std = 209.643608
+Best fitness in 5 generation 53.446986, gain -161.000000, best fitness by now 55.928980, gain -125.200000
+This generation fitness mean = 31.215422, var = 239.715925, std = 15.482762
+This generation gain mean = -405.346000, var = 34260.899884, std = 185.097001
+Best fitness in 6 generation 50.461312, gain -147.200000, best fitness by now 55.928980, gain -125.200000
+This generation fitness mean = 29.268696, var = 307.868945, std = 17.546195
+This generation gain mean = -430.974000, var = 44011.738924, std = 209.789749
+Best fitness in 7 generation 51.216935, gain -182.800000, best fitness by now 55.928980, gain -125.200000
+This generation fitness mean = 31.891051, var = 287.392549, std = 16.952656
+This generation gain mean = -403.850000, var = 40103.815500, std = 200.259371
+Best fitness in 8 generation 58.825894, gain -103.600000, best fitness by now 58.825894, gain -103.600000
+This generation fitness mean = 31.399050, var = 300.775915, std = 17.342892
+This generation gain mean = -408.504000, var = 42125.571584, std = 205.245150
+Best fitness in 9 generation 58.758394, gain -109.000000, best fitness by now 58.825894, gain -103.600000
+This generation fitness mean = 32.682015, var = 296.070452, std = 17.206698
+This generation gain mean = -398.544000, var = 44782.770464, std = 211.619400
+Best fitness in 10 generation 53.219564, gain -158.000000, best fitness by now 58.825894, gain -103.600000
+This generation fitness mean = 35.885153, var = 222.294427, std = 14.909541
+This generation gain mean = -355.638000, var = 30491.256556, std = 174.617458
+Best fitness in 11 generation 53.249564, gain -155.600000, best fitness by now 58.825894, gain -103.600000
+This generation fitness mean = 32.983160, var = 324.147935, std = 18.004109
+This generation gain mean = -394.522000, var = 46279.604716, std = 215.126950
+Best fitness in 12 generation 53.234564, gain -156.800000, best fitness by now 58.825894, gain -103.600000
+This generation fitness mean = 36.243661, var = 278.745445, std = 16.695671
+This generation gain mean = -360.804000, var = 40783.106384, std = 201.948277
+Best fitness in 13 generation 53.264564, gain -154.400000, best fitness by now 58.825894, gain -103.600000
+This generation fitness mean = 31.147371, var = 377.192065, std = 19.421433
+This generation gain mean = -414.376000, var = 50753.005024, std = 225.284276
+Best fitness in 14 generation 54.762720, gain -125.400000, best fitness by now 58.825894, gain -103.600000
+This generation fitness mean = 34.013651, var = 366.672709, std = 19.148700
+This generation gain mean = -388.558000, var = 51567.569836, std = 227.084940
+Best fitness in 15 generation 54.762720, gain -125.400000, best fitness by now 58.825894, gain -103.600000
+This generation fitness mean = 38.205944, var = 237.448996, std = 15.409380
+This generation gain mean = -321.156000, var = 33489.510064, std = 183.001394
+Best fitness in 16 generation 55.579816, gain -155.600000, best fitness by now 58.825894, gain -103.600000
+This generation fitness mean = 34.748250, var = 305.109876, std = 17.467395
+This generation gain mean = -367.050000, var = 39970.458700, std = 199.926133
+Best fitness in 17 generation 55.748687, gain -143.000000, best fitness by now 58.825894, gain -103.600000
+This generation fitness mean = 31.693857, var = 356.295957, std = 18.875803
+This generation gain mean = -400.338000, var = 48871.026956, std = 221.067924
+Best fitness in 18 generation 55.549398, gain -158.000000, best fitness by now 58.825894, gain -103.600000
+This generation fitness mean = 30.870241, var = 338.879880, std = 18.408690
+This generation gain mean = -413.018000, var = 48050.872076, std = 219.205091
+Best fitness in 19 generation 54.765901, gain -142.200000, best fitness by now 58.825894, gain -103.600000
+This generation fitness mean = 37.934780, var = 317.878264, std = 17.829141
+This generation gain mean = -331.260000, var = 47844.084400, std = 218.732907
+Best fitness in 20 generation 54.785220, gain -123.600000, best fitness by now 58.825894, gain -103.600000
+This generation fitness mean = 35.860767, var = 379.386655, std = 19.477850
+This generation gain mean = -349.616000, var = 52467.082944, std = 229.056943
+Best fitness in 21 generation 56.920353, gain -125.200000, best fitness by now 58.825894, gain -103.600000
+This generation fitness mean = 36.900235, var = 345.562298, std = 18.589306
+This generation gain mean = -336.640000, var = 48212.181600, std = 219.572725
+Best fitness in 22 generation 56.758481, gain -137.200000, best fitness by now 58.825894, gain -103.600000
+This generation fitness mean = 39.883834, var = 294.431650, std = 17.159011
+This generation gain mean = -300.280000, var = 43730.291200, std = 209.117888
+Best fitness in 23 generation 54.785220, gain -123.600000, best fitness by now 58.825894, gain -103.600000
+This generation fitness mean = 39.339791, var = 322.917769, std = 17.969913
+This generation gain mean = -300.606000, var = 47576.406764, std = 218.120166
+Best fitness in 24 generation 57.890181, gain -118.000000, best fitness by now 58.825894, gain -103.600000
+This generation fitness mean = 34.863174, var = 399.223000, std = 19.980566
+This generation gain mean = -353.844000, var = 58988.299664, std = 242.875070
+Best fitness in 25 generation 57.868667, gain -111.400000, best fitness by now 58.825894, gain -103.600000
+This generation fitness mean = 38.836083, var = 336.556088, std = 18.345465
+This generation gain mean = -308.672000, var = 47139.499616, std = 217.116327
+Best fitness in 26 generation 58.313349, gain -84.400000, best fitness by now 58.825894, gain -103.600000
+This generation fitness mean = 39.462816, var = 356.586161, std = 18.883489
+This generation gain mean = -303.500000, var = 55085.838800, std = 234.703726
+Best fitness in 27 generation 58.293852, gain -83.800000, best fitness by now 58.825894, gain -103.600000
+This generation fitness mean = 33.150905, var = 460.073365, std = 21.449321
+This generation gain mean = -384.374000, var = 71426.730924, std = 267.257799
+Best fitness in 28 generation 58.629086, gain -61.000000, best fitness by now 58.825894, gain -103.600000
+This generation fitness mean = 37.153902, var = 417.157066, std = 20.424423
+This generation gain mean = -332.238000, var = 61594.704556, std = 248.182805
+Best fitness in 29 generation 58.232238, gain -86.200000, best fitness by now 58.825894, gain -103.600000
+This generation fitness mean = 43.373608, var = 275.494125, std = 16.598016
+This generation gain mean = -260.316000, var = 38342.467344, std = 195.812327
+Best fitness in 30 generation 58.629086, gain -61.000000, best fitness by now 58.825894, gain -103.600000
+This generation fitness mean = 37.087135, var = 470.000231, std = 21.679489
+This generation gain mean = -340.674000, var = 66810.806924, std = 258.477865
+Best fitness in 31 generation 58.825033, gain -53.400000, best fitness by now 58.825894, gain -103.600000

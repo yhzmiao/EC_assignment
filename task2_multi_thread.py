@@ -3,7 +3,7 @@
 # 2 point crossover
 
 
-import random, math
+import random, math, threading
 import numpy as np
 
 import sys, os
@@ -28,7 +28,7 @@ for e in enemy_list:
                     player_controller=player_controller(n_hidden_neurons),
                     enemymode="static",
                     speed="fastest"))
-    env[e - 1].state_to_log()
+    #env[e - 1].state_to_log()
 
 n_variables = (env[0].get_num_sensors()+1)*n_hidden_neurons + (n_hidden_neurons+1)*5 # number of values
 #print(n_variables)  265   10 200 55 5
@@ -49,20 +49,30 @@ from deap import algorithms
 IND_SIZE = n_variables # number of attributes
 POP_SIZE = 100 # number of individuals
 
+def multi_play(e, fitness_list, gain_list, ind):
+    play_result = env[e - 1].play(pcont=np.array(ind))
+    
+    fitness_list[e - 1] = play_result[0]
+    gain_list[e - 1] = play_result[1] - play_result[2]
+
 def calc_fitness(individual):
     # average of all enemies
     enermies_list = [1, 2, 3, 4, 5, 6, 7, 8]
-    fitness_list = []
-    gain_list = []
+    fitness_list = [0.0 for i in range(8)]
+    gain_list = [0.0 for i in range(8)]
 
     #print(individual)
 
+    thread_list = []
     for e in enermies_list:
-        #env.update_parameter('enemies', [e])
-        play_result = env[e - 1].play(pcont=np.array(individual))
-        fitness_list.append(play_result[0])
-        gain_list.append(play_result[1] - play_result[2])
-        
+        thread_list.append(threading.Thread(target = multi_play, args = (e, fitness_list, gain_list, individual)))
+
+    for t in thread_list:
+        t.start()
+    for t in thread_list:
+        t.join()
+
+    print(fitness_list)
     
     ret = np.mean(fitness_list)
     var = np.var(fitness_list)
