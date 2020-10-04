@@ -138,7 +138,6 @@ if __name__ == "__main__":
     best_gen_fitness = 0
     best_gen_ind = None
     
-    fp = open(experiment_name + "/output.txt", "w")
     for now_gen in range(0, n_gen):
         print("Start %d generation!" % now_gen)
         offspring = toolbox.select(pop, len(pop))
@@ -247,7 +246,8 @@ if __name__ == "__main__":
             gen_id = 1
             T0 = T0 * 2 # start with more mutation
             print("New T0!")
-
+        
+        fp = open(experiment_name + "/output.txt", "a")
         # output for making plot
         print("Best fitness in %d generation %f, gain %f, best fitness by now %f, gain %f" % (now_gen, best_gen_ind.fitness.values[0], best_gen_ind.fitness.values[3], best_ind.fitness.values[0], best_ind.fitness.values[3]), file = fp)
         print("This generation fitness mean = %f, var = %f, std = %f" % (gen_mean, gen_var, gen_std), file = fp)
