@@ -252,6 +252,7 @@ if __name__ == "__main__":
         print("Best fitness in %d generation %f, gain %f, best fitness by now %f, gain %f" % (now_gen, best_gen_ind.fitness.values[0], best_gen_ind.fitness.values[3], best_ind.fitness.values[0], best_ind.fitness.values[3]), file = fp)
         print("This generation fitness mean = %f, var = %f, std = %f" % (gen_mean, gen_var, gen_std), file = fp)
         print("This generation gain mean = %f, var = %f, std = %f" % (gen_gain_mean, gen_gain_var, gen_gain_std), file = fp)
+        fp.close()
 
         # output to screen
         print("Best fitness in %d generation %f, gain %f, best fitness by now %f, gain %f" % (now_gen, best_gen_ind.fitness.values[0], best_gen_ind.fitness.values[3], best_ind.fitness.values[0], best_ind.fitness.values[3]))
