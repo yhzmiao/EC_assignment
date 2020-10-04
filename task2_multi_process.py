@@ -119,7 +119,7 @@ toolbox.register("evaluate", calc_fitness)
 
 if __name__ == "__main__":
     
-    n_gen = 50 # number of generations
+    n_gen = 30 # number of generations
 
     gen_id = 2 # if 1, it will accept every change
     T0 = 0.1
@@ -261,3 +261,6 @@ if __name__ == "__main__":
 
 
     np.savetxt(experiment_name+'/best.txt', best_ind)
+    fp_end = open(experiment_name + "/end.txt", "w")
+    for ind in pop:
+        print(ind, file = fp_end)
