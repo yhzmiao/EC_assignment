@@ -44,7 +44,7 @@ POP_SIZE = 100 # number of individuals
 
 NUM_OF_CORE = 4 # 2 4 8 would be optional
 
-def multi_play(e_id, fitness_list, gain_list, ind):
+def multi_play(e_id, fitness_list, gain_list, time_list, ind):
     e_list = [1, 3, 5 ,7, 2, 4, 6, 8]
     env = Environment(experiment_name=experiment_name,
                     enemies=[e_list[e_id]], # will be changed later
@@ -56,12 +56,14 @@ def multi_play(e_id, fitness_list, gain_list, ind):
     
     fitness_list[e_id] = play_result[0]
     gain_list[e_id] = play_result[1] - play_result[2]
+    time_list[e_id] = play_result[3]
 
 def calc_fitness(individual):
     list_size = 4
 
     fitness_list = Array('d', range(list_size))
     gain_list = Array('d', range(list_size))
+    time_list = Array('d', range(list_size))
 
     #print(individual)
     #e_list = [1, 3, 5 ,7, 2, 4, 6, 8]
@@ -69,7 +71,7 @@ def calc_fitness(individual):
     for e in range(0, list_size, NUM_OF_CORE):
         process_list = []
         for i in range(NUM_OF_CORE):
-            process_list.append(Process(target = multi_play, args = (e + i, fitness_list, gain_list, individual)))
+            process_list.append(Process(target = multi_play, args = (e + i, fitness_list, gain_list, time_list, individual)))
         for i in range(NUM_OF_CORE):
             process_list[i].start()
         for i in range(NUM_OF_CORE):
@@ -79,11 +81,19 @@ def calc_fitness(individual):
     var = np.var(fitness_list)
     std = np.std(fitness_list)
     gain = np.sum(gain_list)
+
+    defeat = 0
+    for g in gain_list:
+        if g > 0:
+            defeat += 1
+    tot_time = np.sum(time_list)
+
+    new_fit = 20 * defeat + (800 + gain) / 80 + 8 / tot_time
     #print(gain_list)
     if (ret < 0):
         ret = min(2, 10 / (-ret))
-    print(ret, var, std, gain)
-    return (ret, var, std, gain)
+    print(new_fit, var, std, gain)
+    return (new_fit, var, std, gain)
 
 
 
