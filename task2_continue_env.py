@@ -229,19 +229,20 @@ if __name__ == "__main__":
                 offspring[i] = toolbox.clone(old_offspring)
 
         # replace k worst with k best
+        fitness_list = []
+        gain_list = []
+        for ind in offspring:
+            fitness_list.append(ind.fitness.values[0])
+            gain_list.append(ind.fitness.values[3])
+        rank_list = np.argsort(fitness_list)
+        gen_mean = np.mean(fitness_list)
+        gen_gain_mean = np.mean(gain_list)
+        gen_var = np.var(fitness_list)
+        gen_gain_var = np.var(gain_list)
+        gen_std = np.std(fitness_list)
+        gen_gain_std = np.std(gain_list)
+        
         if (now_gen >= 10):
-            fitness_list = []
-            gain_list = []
-            for ind in offspring:
-                fitness_list.append(ind.fitness.values[0])
-                gain_list.append(ind.fitness.values[3])
-            rank_list = np.argsort(fitness_list)
-            gen_mean = np.mean(fitness_list)
-            gen_gain_mean = np.mean(gain_list)
-            gen_var = np.var(fitness_list)
-            gen_gain_var = np.var(gain_list)
-            gen_std = np.std(fitness_list)
-            gen_gain_std = np.std(gain_list)
             for i in range(REPLACE_K):
                 #print(offspring[rank_list[i]].fitness.values[0])
                 offspring[rank_list[i]] = toolbox.clone(offspring[rank_list[len(offspring) - i - 1]])
