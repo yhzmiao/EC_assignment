@@ -92,7 +92,7 @@ def calc_fitness(individual):
     #print(gain_list)
     if (ret < 0):
         ret = min(2, 10 / (-ret))
-    print(new_fit, var, std, gain)
+    print(new_fitf, var, std, gain)
     return (new_fit, var, std, gain)
 
 
@@ -110,9 +110,12 @@ def simulated_annealing(f1, f2, gen_id, T0):
     if (f1 < f2 + eps):
         print("Accepted!")
         return 0
-    if (f1 > f2 and random.uniform(0, 1) < math.pow(gen_id, (1/f1 - 1/f2) / T0)):
-        print("Accepted!")
-        return 0
+    if (f1 > f2):
+        if (f1 - f2 < 20):
+            f2 = max(1, f1 - (f1 - f2) * 8)
+        if(random.uniform(0, 1) < math.pow(gen_id, (1/f1 - 1/f2) / T0)):
+            print("Accepted!")
+            return 0
     print("Rejected!")
     return 1 # choose the old one
 
@@ -158,7 +161,7 @@ if __name__ == "__main__":
     CX_RATE = 0.5
     MT_RATE = 0.2
     N_RESET = 10
-    REPLACE_K = 30
+    REPLACE_K = 20
 
     best_fitness = 0
     best_ind = None
@@ -252,7 +255,7 @@ if __name__ == "__main__":
         gen_std = np.std(fitness_list)
         gen_gain_std = np.std(gain_list)
         
-        if (now_gen >= 10):
+        if (now_gen >= 3):
             for i in range(REPLACE_K):
                 #print(offspring[rank_list[i]].fitness.values[0])
                 offspring[rank_list[i]] = toolbox.clone(offspring[rank_list[len(offspring) - i - 1]])
