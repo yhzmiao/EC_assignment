@@ -59,7 +59,7 @@ def multi_play(e_id, fitness_list, gain_list, ind):
 
 def calc_fitness(individual, n_gen):
     if n_gen < 30:
-        list_size = 4
+        list_size = 2
     else:
         list_size = 8
 
@@ -69,14 +69,22 @@ def calc_fitness(individual, n_gen):
     #print(individual)
     #e_list = [1, 3, 5 ,7, 2, 4, 6, 8]
 
-    for e in range(0, list_size, NUM_OF_CORE):
-        process_list = []
-        for i in range(NUM_OF_CORE):
-            process_list.append(Process(target = multi_play, args = (e + i, fitness_list, gain_list, individual)))
-        for i in range(NUM_OF_CORE):
-            process_list[i].start()
-        for i in range(NUM_OF_CORE):
-            process_list[i].join()
+    if list_size == 2:
+        p0 = Process(target = multi_play, args = (0, fitness_list, gain_list, individual))
+        p1 = Process(target = multi_play, args = (1, fitness_list, gain_list, individual))
+        p0.start()
+        p1.start()
+        p0.join()
+        p1.join()
+    else:
+        for e in range(0, list_size, NUM_OF_CORE):
+            process_list = []
+            for i in range(NUM_OF_CORE):
+                process_list.append(Process(target = multi_play, args = (e + i, fitness_list, gain_list, individual)))
+            for i in range(NUM_OF_CORE):
+                process_list[i].start()
+            for i in range(NUM_OF_CORE):
+                process_list[i].join()
     
     ret = np.mean(fitness_list)
     var = np.var(fitness_list)
@@ -145,7 +153,9 @@ if __name__ == "__main__":
     best_gen_fitness = 0
     best_gen_ind = None
     
-    for now_gen in range(0, 60):
+    for now_gen in range(0, 30):
+        if now_gen == 30:
+            best_fitness = 0
         print("Start %d generation!" % now_gen)
         offspring = toolbox.select(pop, len(pop))
         
