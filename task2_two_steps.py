@@ -16,7 +16,7 @@ os.environ["SDL_VIDEODRIVER"] = "dummy"
 
 # setup the environment
 
-experiment_name = "task2_two_steps"
+experiment_name = "task2_two_steps_2"
 if not os.path.exists(experiment_name):
     os.makedirs(experiment_name)
 
@@ -153,7 +153,7 @@ if __name__ == "__main__":
     best_gen_fitness = 0
     best_gen_ind = None
     
-    for now_gen in range(0, 30):
+    for now_gen in range(0, 60):
         if now_gen == 30:
             best_fitness = 0
         print("Start %d generation!" % now_gen)
