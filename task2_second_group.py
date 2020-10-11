@@ -16,7 +16,7 @@ os.environ["SDL_VIDEODRIVER"] = "dummy"
 
 # setup the environment
 
-experiment_name = "task2_continue_env"
+experiment_name = "task2_sa_2"
 if not os.path.exists(experiment_name):
     os.makedirs(experiment_name)
 
@@ -44,8 +44,8 @@ POP_SIZE = 100 # number of individuals
 
 NUM_OF_CORE = 4 # 2 4 8 would be optional
 
-def multi_play(e_id, fitness_list, gain_list, time_list, ind):
-    e_list = [1, 3, 5 ,7, 2, 4, 6, 8]
+def multi_play(e_id, fitness_list, gain_list, ind):
+    e_list = [4, 6, 7, 8]
     env = Environment(experiment_name=experiment_name,
                     enemies=[e_list[e_id]], # will be changed later
                     playermode="ai",
@@ -56,44 +56,42 @@ def multi_play(e_id, fitness_list, gain_list, time_list, ind):
     
     fitness_list[e_id] = play_result[0]
     gain_list[e_id] = play_result[1] - play_result[2]
-    time_list[e_id] = play_result[3]
 
-def calc_fitness(individual):
+def calc_fitness(individual, n_gen):
     list_size = 4
 
     fitness_list = Array('d', range(list_size))
     gain_list = Array('d', range(list_size))
-    time_list = Array('d', range(list_size))
 
     #print(individual)
     #e_list = [1, 3, 5 ,7, 2, 4, 6, 8]
 
-    for e in range(0, list_size, NUM_OF_CORE):
-        process_list = []
-        for i in range(NUM_OF_CORE):
-            process_list.append(Process(target = multi_play, args = (e + i, fitness_list, gain_list, time_list, individual)))
-        for i in range(NUM_OF_CORE):
-            process_list[i].start()
-        for i in range(NUM_OF_CORE):
-            process_list[i].join()
+    if list_size == 2:
+        p0 = Process(target = multi_play, args = (0, fitness_list, gain_list, individual))
+        p1 = Process(target = multi_play, args = (1, fitness_list, gain_list, individual))
+        p0.start()
+        p1.start()
+        p0.join()
+        p1.join()
+    else:
+        for e in range(0, list_size, NUM_OF_CORE):
+            process_list = []
+            for i in range(NUM_OF_CORE):
+                process_list.append(Process(target = multi_play, args = (e + i, fitness_list, gain_list, individual)))
+            for i in range(NUM_OF_CORE):
+                process_list[i].start()
+            for i in range(NUM_OF_CORE):
+                process_list[i].join()
     
     ret = np.mean(fitness_list)
     var = np.var(fitness_list)
     std = np.std(fitness_list)
     gain = np.sum(gain_list)
-
-    defeat = 0
-    for g in gain_list:
-        if g > 0:
-            defeat += 1
-    tot_time = np.sum(time_list)
-
-    new_fit = 20 * defeat + (800 + gain) / 80 + 8 / tot_time
     #print(gain_list)
     if (ret < 0):
         ret = min(2, 10 / (-ret))
-    print(new_fit, var, std, gain)
-    return (new_fit, var, std, gain)
+    print(ret, var, std, gain)
+    return (ret, var, std, gain)
 
 
 
@@ -110,12 +108,9 @@ def simulated_annealing(f1, f2, gen_id, T0):
     if (f1 < f2 + eps):
         print("Accepted!")
         return 0
-    if (f1 > f2):
-        if (f1 - f2 < 20):
-            f2 = max(1, f1 - (f1 - f2) * 8)
-        if(random.uniform(0, 1) < math.pow(gen_id, (1/f1 - 1/f2) / T0)):
-            print("Accepted!")
-            return 0
+    if (f1 > f2 and random.uniform(0, 1) < math.pow(gen_id, (1/f1 - 1/f2) / T0)):
+        print("Accepted!")
+        return 0
     print("Rejected!")
     return 1 # choose the old one
 
@@ -131,27 +126,12 @@ pop = toolbox.population(n=POP_SIZE)
 for ind in pop:
     ind.fitness.values = 1.0, 0.0, 0.0, 0.0
 
-
 toolbox.register("mate", tools.cxTwoPoint)
 #toolbox.register("mutate", simple_mutate)
 toolbox.register("select", tools.selRoulette)
 toolbox.register("evaluate", calc_fitness)
 
 if __name__ == "__main__":
-    
-    # continue with best results
-    f_cont = open("cont_best.txt", "r")
-    for i in range(n_variables):
-        v = f_cont.readline()
-        pop[0][i] = float(v)
-
-    #print(pop[0])
-    for i in range(1, POP_SIZE):
-        if i % 4 == 0:
-            pop[i] = toolbox.clone(pop[0])
-    f_cont.close()
-    #print(pop)
-
     
     n_gen = 30 # number of generations
 
@@ -161,7 +141,7 @@ if __name__ == "__main__":
     CX_RATE = 0.5
     MT_RATE = 0.2
     N_RESET = 10
-    REPLACE_K = 20
+    REPLACE_K = 30
 
     best_fitness = 0
     best_ind = None
@@ -170,7 +150,9 @@ if __name__ == "__main__":
     best_gen_fitness = 0
     best_gen_ind = None
     
-    for now_gen in range(0, n_gen):
+    for now_gen in range(0, 60):
+        if now_gen == 30:
+            best_fitness = 0
         print("Start %d generation!" % now_gen)
         offspring = toolbox.select(pop, len(pop))
         
@@ -183,9 +165,9 @@ if __name__ == "__main__":
             if random.uniform(0, 1) < CX_RATE:
                 old_offspring_1 = toolbox.clone(offspring[i - 1])
                 old_offspring_2 = toolbox.clone(offspring[i])
-                old_offspring_1.fitness.values = toolbox.evaluate(old_offspring_1)
+                old_offspring_1.fitness.values = toolbox.evaluate(old_offspring_1, now_gen)
                 #print(old_offspring_1.fitness.values)
-                old_offspring_2.fitness.values = toolbox.evaluate(old_offspring_2)
+                old_offspring_2.fitness.values = toolbox.evaluate(old_offspring_2, now_gen)
 
                 # some best results might be dropped here
                 if best_fitness + eps < old_offspring_1.fitness.values[0]:
@@ -205,16 +187,16 @@ if __name__ == "__main__":
                     best_gen_ind = toolbox.clone(old_offspring_2)
                 
                 offspring[i - 1], offspring[i] = toolbox.mate(offspring[i - 1], offspring[i])
-                offspring[i - 1].fitness.values = toolbox.evaluate(offspring[i - 1])
-                offspring[i].fitness.values = toolbox.evaluate(offspring[i])
+                offspring[i - 1].fitness.values = toolbox.evaluate(offspring[i - 1], now_gen)
+                offspring[i].fitness.values = toolbox.evaluate(offspring[i], now_gen)
 
                 if(simulated_annealing(old_offspring_1.fitness.values[0], offspring[i - 1].fitness.values[0], gen_id, T0) == 1):
                     offspring[i - 1] = toolbox.clone(old_offspring_1)
                 if(simulated_annealing(old_offspring_2.fitness.values[0], offspring[i].fitness.values[0], gen_id, T0) == 1):
                     offspring[i] = toolbox.clone(old_offspring_2)
             else:
-                offspring[i - 1].fitness.values = toolbox.evaluate(offspring[i - 1])
-                offspring[i].fitness.values = toolbox.evaluate(offspring[i])
+                offspring[i - 1].fitness.values = toolbox.evaluate(offspring[i - 1], now_gen)
+                offspring[i].fitness.values = toolbox.evaluate(offspring[i], now_gen)
 
         # simulated annealing(mutation)
         for i in range(0, len(offspring)):
@@ -234,7 +216,7 @@ if __name__ == "__main__":
                 best_gen_ind = toolbox.clone(old_offspring)
 
             offspring[i], = uniform_mutate(offspring[i])
-            offspring[i].fitness.values = toolbox.evaluate(offspring[i])
+            offspring[i].fitness.values = toolbox.evaluate(offspring[i], now_gen)
 
             # if not accept, return to old
             #print(old_offspring.fitness.values)
@@ -254,12 +236,10 @@ if __name__ == "__main__":
         gen_gain_var = np.var(gain_list)
         gen_std = np.std(fitness_list)
         gen_gain_std = np.std(gain_list)
-        
-        if (now_gen >= 3):
-            for i in range(REPLACE_K):
-                #print(offspring[rank_list[i]].fitness.values[0])
-                offspring[rank_list[i]] = toolbox.clone(offspring[rank_list[len(offspring) - i - 1]])
-                #print(offspring[rank_list[i]].fitness.values[0])
+        for i in range(REPLACE_K):
+            #print(offspring[rank_list[i]].fitness.values[0])
+            offspring[rank_list[i]] = toolbox.clone(offspring[rank_list[len(offspring) - i - 1]])
+            #print(offspring[rank_list[i]].fitness.values[0])
         
         # update best
         for ind in offspring:
